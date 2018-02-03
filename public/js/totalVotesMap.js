@@ -1,220 +1,50 @@
-//Integrate ethereum blockchain with web3
-if (typeof web3 !== 'undefined') {
-    web3 = new Web3(web3.currentProvider);
-} else {
-    // set the provider you want from Web3.providers
-    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-}
-
-web3.eth.defaultAccount = web3.eth.accounts[0];
-
-let VotingContract = web3.eth.contract([
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "state",
-        "type": "string"
-      }
-    ],
-    "name": "getStateResult",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "result",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "party",
-        "type": "string"
-      },
-      {
-        "name": "state",
-        "type": "string"
-      },
-      {
-        "name": "number",
-        "type": "uint256"
-      }
-    ],
-    "name": "dummyData",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "name": "party",
-        "type": "string"
-      },
-      {
-        "name": "state",
-        "type": "string"
-      }
-    ],
-    "name": "vote",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getTotalVotes",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "a",
-        "type": "string"
-      },
-      {
-        "name": "b",
-        "type": "string"
-      }
-    ],
-    "name": "compareStrings",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "name": "_voted",
-        "type": "bool"
-      }
-    ],
-    "name": "challenge",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  }
-]);
-
-let Voting = VotingContract.at('0x8800708d38406db99d14bcc11fca54683c359000');
-
-console.log(Voting);
-
 /* global Highcharts */
-  Highcharts.seriesType('mappie', 'pie', {
-    center: null, // Can't be array by default anymore
-    clip: true, // For map navigation
-    states: {
-      hover: {
-        halo: {
-          size: 5
-        }
+Highcharts.seriesType('mappie', 'pie', {
+  center: null, // Can't be array by default anymore
+  clip: true, // For map navigation
+  states: {
+    hover: {
+      halo: {
+        size: 5
       }
-    },
-    dataLabels: {
-      enabled: false
     }
-  }, {
-    getCenter: function () {
-      var options = this.options,
-        chart = this.chart,
-        slicingRoom = 2 * (options.slicedOffset || 0);
-      if (!options.center) {
-        options.center = [null, null]; // Do the default here instead
-      }
-      // Handlelat/lon support
-      if (options.center.lat !== undefined) {
-        var point = chart.fromLatLonToPoint(options.center);
-        options.center = [
-          chart.xAxis[0].toPixels(point.x, true),
-          chart.yAxis[0].toPixels(point.y, true)
-        ];
-      }
-      // Handle dynamic size
-      if (options.sizeFormatter) {
-        options.size = options.sizeFormatter.call(this);
-      }
-      // Call parent function
-      var result = Highcharts.seriesTypes.pie.prototype.getCenter.call(this);
-      // Must correct for slicing room to get exact pixel pos
-      result[0] -= slicingRoom;
-      result[1] -= slicingRoom;
-      return result;
-    },
-    translate: function (p) {
-      this.options.center = this.userOptions.center;
-      this.center = this.getCenter();
-      return Highcharts.seriesTypes.pie.prototype.translate.call(this, p);
+  },
+  dataLabels: {
+    enabled: false
+  }
+}, {
+  getCenter: function () {
+    var options = this.options,
+      chart = this.chart,
+      slicingRoom = 2 * (options.slicedOffset || 0);
+    if (!options.center) {
+      options.center = [null, null]; // Do the default here instead
     }
-  });
+    // Handlelat/lon support
+    if (options.center.lat !== undefined) {
+      var point = chart.fromLatLonToPoint(options.center);
+      options.center = [
+        chart.xAxis[0].toPixels(point.x, true),
+        chart.yAxis[0].toPixels(point.y, true)
+      ];
+    }
+    // Handle dynamic size
+    if (options.sizeFormatter) {
+      options.size = options.sizeFormatter.call(this);
+    }
+    // Call parent function
+    var result = Highcharts.seriesTypes.pie.prototype.getCenter.call(this);
+    // Must correct for slicing room to get exact pixel pos
+    result[0] -= slicingRoom;
+    result[1] -= slicingRoom;
+    return result;
+  },
+  translate: function (p) {
+    this.options.center = this.userOptions.center;
+    this.center = this.getCenter();
+    return Highcharts.seriesTypes.pie.prototype.translate.call(this, p);
+  }
+});
 
 function getTotalVotes(total, votes) {
   return total + votes;
@@ -234,8 +64,8 @@ var data = [
 
 stateNames.map(function(stateName) {
   var bjp =parseInt(Voting.getStateResult(stateName)[0].toString());
-    var cong = parseInt(Voting.getStateResult(stateName)[1].toString());
-    var aap = parseInt(Voting.getStateResult(stateName)[2].toString());
+  var cong = parseInt(Voting.getStateResult(stateName)[1].toString());
+  var aap = parseInt(Voting.getStateResult(stateName)[2].toString());
   data.push(populateData(stateName,bjp,cong,aap,0 ))
   // tempVoted.push([stateName, Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100)])
 });
