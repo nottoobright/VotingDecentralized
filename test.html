@@ -48,24 +48,56 @@
         web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
     }
 
-    let accounts=[
-        {
-            username: "saurav",
-            pin_salt: "asdfasdf",
-            address:"asdfasdf232",
-            private_key:"asfasdf231231"
-        },
-        {
-            username: "owais",
-            pin_salt: "sdfasdf",
-            address:"asdfasdf2SDF32",
-            private_key:"asfasdf2adsf31231"
-        }
-    ]
-
     web3.eth.defaultAccount = web3.eth.accounts[0];
 
     let CoursetroContract = web3.eth.contract([
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "who_am_i",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "instructorAccts",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "getInstructors",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address[]"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
         {
             "constant": true,
             "inputs": [
@@ -96,53 +128,6 @@
         {
             "constant": true,
             "inputs": [],
-            "name": "getInstructors",
-            "outputs": [
-                {
-                    "name": "",
-                    "type": "address[]"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [
-                {
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "name": "instructorAccts",
-            "outputs": [
-                {
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "who_am_i",
-            "outputs": [
-                {
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
             "name": "countInstructors",
             "outputs": [
                 {
@@ -153,6 +138,28 @@
             "payable": false,
             "stateMutability": "view",
             "type": "function"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "fName",
+                    "type": "bytes16"
+                },
+                {
+                    "indexed": false,
+                    "name": "lName",
+                    "type": "bytes16"
+                },
+                {
+                    "indexed": false,
+                    "name": "age",
+                    "type": "uint256"
+                }
+            ],
+            "name": "instructorInfo",
+            "type": "event"
         },
         {
             "constant": false,
@@ -179,32 +186,10 @@
             "payable": false,
             "stateMutability": "nonpayable",
             "type": "function"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": false,
-                    "name": "fName",
-                    "type": "bytes16"
-                },
-                {
-                    "indexed": false,
-                    "name": "lName",
-                    "type": "bytes16"
-                },
-                {
-                    "indexed": false,
-                    "name": "age",
-                    "type": "uint256"
-                }
-            ],
-            "name": "instructorInfo",
-            "type": "event"
         }
     ]);
 
-    let Coursetro = CoursetroContract.at('0xadea051b7604e67dd7aeda401ef4135ed3d667ae');
+    let Coursetro = CoursetroContract.at('0xef1f4cfe128ffda6084e8983c0ad43d17e20e751');
     console.log(Coursetro);
 
 

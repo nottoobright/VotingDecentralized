@@ -1,8 +1,151 @@
-/* global Highcharts */
+//Integrate ethereum blockchain with web3
+if (typeof web3 !== 'undefined') {
+    web3 = new Web3(web3.currentProvider);
+} else {
+    // set the provider you want from Web3.providers
+    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+}
 
-// New map-pie series type that also allows lat/lon as center option.
-  // Also adds a sizeFormatter option to the series, to allow dynamic sizing
-  // of the pies.
+web3.eth.defaultAccount = web3.eth.accounts[0];
+
+let VotingContract = web3.eth.contract([
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "state",
+                "type": "string"
+            }
+        ],
+        "name": "getStateResult",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "result",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "party",
+                "type": "string"
+            },
+            {
+                "name": "state",
+                "type": "string"
+            },
+            {
+                "name": "number",
+                "type": "uint256"
+            }
+        ],
+        "name": "dummyData",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "account",
+                "type": "address"
+            },
+            {
+                "name": "party",
+                "type": "string"
+            },
+            {
+                "name": "state",
+                "type": "string"
+            }
+        ],
+        "name": "vote",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getTotalVotes",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "a",
+                "type": "string"
+            },
+            {
+                "name": "b",
+                "type": "string"
+            }
+        ],
+        "name": "compareStrings",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }
+]);
+
+let Voting = VotingContract.at('0x5d66754f2ee0cd9e3ac8b416db526f2170a6c2ae');
+
+console.log(Voting);
+
+/* global Highcharts */
   Highcharts.seriesType('mappie', 'pie', {
     center: null, // Can't be array by default anymore
     clip: true, // For map navigation
@@ -24,7 +167,7 @@
       if (!options.center) {
         options.center = [null, null]; // Do the default here instead
       }
-      // Handle lat/lon support
+      // Handlelat/lon support
       if (options.center.lat !== undefined) {
         var point = chart.fromLatLonToPoint(options.center);
         options.center = [
@@ -65,9 +208,29 @@ var stateNames = ["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattis
 var data = [
   // state, bjpVotes, congressVotes, aapVotes, notVotedVotes, sumVotes, winner, offset config for pies
 ];
+
+
+// tempVoted.map(function(data){
+//     // console.log(data[0]);
+//     // console.log(data[1]);
+//     // console.log(data[2]);
+//     // console.log(data[3]);
+//
+//     // Voting.dummyData("bjp",data[0],parseInt(data[0]));
+//     // Voting.dummyData("cong",data[0],parseInt(data[1]));
+//     // Voting.dummyData("aap",stateName,parseInt(data[2]));
+// })
+
+
+
 stateNames.map(function(stateName) {
-  data.push(populateData(stateName, 10,5,2,4));
+  var bjp =parseInt(Voting.getStateResult(stateName)[0].toString());
+    var cong = parseInt(Voting.getStateResult(stateName)[1].toString());
+    var aap = parseInt(Voting.getStateResult(stateName)[2].toString());
+  data.push(populateData(stateName,bjp,cong,aap,0 ))
+  // tempVoted.push([stateName, Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100),Math.floor(Math.random()*100)])
 });
+
 
 var maxVotes = 0,
   bjpColor = 'rgba(74,131,240,0.80)',
