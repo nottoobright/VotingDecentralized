@@ -247,7 +247,7 @@ Highcharts.each(data, function (row) {
 // Build the chart
 var chart = Highcharts.mapChart('container', {
   title: {
-    text: 'Indian Election Result'
+    text: 'State Wise Result'
   },
 
   chart: {
