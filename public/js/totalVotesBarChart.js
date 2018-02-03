@@ -1,10 +1,10 @@
 /* global Highcharts */
+/* global Voting */
 /* global getTotalVotes */
 // Create the chart
 
-var bjpVotes = Voting.result()[0], congressVotes = Voting.result()[1], aapVotes = Voting.result()[2], notVotedVotes = 0;
+var bjpVotes = parseInt(Voting.result()[0]), congressVotes = parseInt(Voting.result()[1]), aapVotes = parseInt(Voting.result()[2]), notVotedVotes = 0;
 var totalVotes = [bjpVotes, congressVotes, aapVotes, notVotedVotes].reduce(getTotalVotes);
-
 function percentVotes(votes) {
   return (votes/totalVotes) * 100;
 }
