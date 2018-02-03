@@ -34,6 +34,20 @@ let VotingContract = web3.eth.contract([
     {
         "constant": true,
         "inputs": [],
+        "name": "getWinner",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
         "name": "getTotalVotes",
         "outputs": [
             {
@@ -161,10 +175,16 @@ let VotingContract = web3.eth.contract([
         "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
+    },
+    {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
     }
 ]);
 
-let Voting = VotingContract.at('0x17901bc4bf497dbabeb13c0e13a784d30fd87377');
+let Voting = VotingContract.at('0xd17a0a9e216ee06159e36d0a5717fb7f796d0af8');
 
 console.log(Voting);
 

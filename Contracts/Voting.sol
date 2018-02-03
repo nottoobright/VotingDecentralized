@@ -1,7 +1,19 @@
 pragma solidity ^0.4.11;
 
-contract Voting {
 
+
+
+contract Voting {
+    address owner;
+
+    function Voting() public {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
 
     uint bjp;
     uint cong;
@@ -17,6 +29,7 @@ contract Voting {
     //set adhaar_no to voted
     mapping (address => bool) voted;
 
+    uint total_challenges;
 
     //count of votes in each party
     struct states_vote{
@@ -26,6 +39,7 @@ contract Voting {
     }
 
     uint dummyCreated;
+
 
     function compareStrings (string a, string b) view returns (bool){
         return keccak256(a) == keccak256(b);
@@ -76,7 +90,18 @@ contract Voting {
     }
 
     function challenge(address account,bool _voted) view public returns(bool){
+        total_challenges+=1;
         return voted[account]==_voted;
+    }
+
+    function getWinner()view public returns(string){
+        if(bjp>=aap && bjp>=cong){
+            return "bjp";
+        }
+        else if(cong>=aap && bjp<=cong){
+            return "cong";
+        }
+        return "aap";
     }
 
     function dummyData(string party,string state,uint number) public{

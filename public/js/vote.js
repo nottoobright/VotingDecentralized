@@ -2,6 +2,7 @@ var stateNames = ["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattis
 $(".submit-vote").on('click', function(e){
     // console.log($('input[type="radio"]:checked').val());
   Voting.vote(web3.eth.accounts[ethid],$('input[type="radio"]:checked').val(),stateNames[ethid]);
-  window.location.href = "/";
-  e.preventDefault();
+    console.log(web3.eth.accounts[ethid], $('input[type="radio"]:checked').val(), stateNames[ethid]);
+
+    e.preventDefault();
 });
