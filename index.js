@@ -209,20 +209,6 @@ var data = [
   // state, bjpVotes, congressVotes, aapVotes, notVotedVotes, sumVotes, winner, offset config for pies
 ];
 
-
-// tempVoted.map(function(data){
-//     // console.log(data[0]);
-//     // console.log(data[1]);
-//     // console.log(data[2]);
-//     // console.log(data[3]);
-//
-//     // Voting.dummyData("bjp",data[0],parseInt(data[0]));
-//     // Voting.dummyData("cong",data[0],parseInt(data[1]));
-//     // Voting.dummyData("aap",stateName,parseInt(data[2]));
-// })
-
-
-
 stateNames.map(function(stateName) {
   var bjp =parseInt(Voting.getStateResult(stateName)[0].toString());
     var cong = parseInt(Voting.getStateResult(stateName)[1].toString());

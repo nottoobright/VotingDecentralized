@@ -2,7 +2,7 @@
 /* global getTotalVotes */
 // Create the chart
 
-var bjpVotes = 10, congressVotes = 8, aapVotes = 9, notVotedVotes = 9;
+var bjpVotes = Voting.result()[0], congressVotes = Voting.result()[1], aapVotes = Voting.result()[2], notVotedVotes = 0;
 var totalVotes = [bjpVotes, congressVotes, aapVotes, notVotedVotes].reduce(getTotalVotes);
 
 function percentVotes(votes) {
