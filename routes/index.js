@@ -6,6 +6,10 @@ router.get('/', ensureAuthenticated, function(req, res){
 	res.render('index');
 });
 
+router.get('/vote', ensureAuthenticated, function(req, res) {
+  res.render('vote', {username: req.user.username, ethid: req.user.ethid});
+});
+
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
 		return next();
