@@ -24,22 +24,22 @@
           <div class="statistics-row row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
               <div class="card card-statistics">
-                <div class="card-body btb btn-primary-outline buy-medicine">
+                <div class="card-body toggle-vote-modal btn-primary-outline buy-medicine" data-toggle="modal" data-target="#voteModalCenter">
                   <div class="clearfix">
                     <div class="float-left">
                       <h4 class="text-primary">
-                        <i class="fa fa-cart-plus highlight-icon" aria-hidden="true"></i>
+                        <i class="fa fa-users highlight-icon" aria-hidden="true"></i>
                       </h4>
                     </div>
                     <div class="float-right buy-label">
                       <h4 class="card-text text-primary">
-                        Buy
+                        Vote
                       </h4>
                       <!-- <button type="button" class="btn btn-outline-primary bold-text card-text">Buy Medicine</button> -->
                     </div>
                   </div>
                   <p class="text-muted">
-                    <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Buy Medicine From Manufacturer
+                    <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Cast A Vote
                   </p>
                 </div>
               </div>
@@ -54,32 +54,12 @@
                       </h4>
                     </div>
                     <div class="float-right">
-                      <p class="card-text text-dark">Available</p>
-                      <h4 class="bold-text total-sales-val pull-right">29</h4>
+                      <p class="card-text text-dark">Votes Casted</p>
+                      <h4 class="bold-text total-sales-val pull-right votes-casted-val">29745</h4>
                     </div>
                   </div>
                   <p class="text-muted">
-                    <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Types of Medicines in Stock
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <h4 class="text-warning">
-                        <i class="fa fa-shopping-cart highlight-icon" aria-hidden="true"></i>
-                      </h4>
-                    </div>
-                    <div class="float-right">
-                      <p class="card-text text-dark">Orders</p>
-                      <h4 class="bold-text">656</h4>
-                    </div>
-                  </div>
-                  <p class="text-muted">
-                    <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Total Orders in the Past 30 Days
+                    <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Total No. Of Votes Casted
                   </p>
                 </div>
               </div>
@@ -90,24 +70,66 @@
                   <div class="clearfix">
                     <div class="float-left">
                       <h4 class="text-success">
-                        <i class="fa fa-dollar highlight-icon" aria-hidden="true"></i>
+                        <i class="fa fa-trophy highlight-icon" aria-hidden="true"></i>
                       </h4>
                     </div>
                     <div class="float-right">
-                      <p class="card-text text-dark">Revenue</p>
-                      <h4 class="bold-text">$65656</h4>
+                      <p class="card-text text-dark">Winning</p>
+                      <h4 class="bold-text">Congress</h4>
                     </div>
                   </div>
                   <p class="text-muted">
-                    <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Total Revenue Generated in the Past 30
-                    Days
+                    <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Party that is winning the election
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4"> -->
+            <!--   <div class="card card-statistics"> -->
+            <!--     <div class="card-body"> -->
+            <!--       <div class="clearfix"> -->
+            <!--         <div class="float-left"> -->
+            <!--           <h4 class="text-warning"> -->
+            <!--             <i class="fa fa-gavel highlight-icon" aria-hidden="true"></i> -->
+            <!--           </h4> -->
+            <!--         </div> -->
+            <!--         <div class="float-right"> -->
+            <!--           <p class="card-text text-dark">Challenge</p> -->
+            <!--           <h4 class="bold-text">$65656</h4> -->
+            <!--         </div> -->
+            <!--       </div> -->
+            <!--       <p class="text-muted"> -->
+            <!--         <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Total Revenue Generated in the Past 30 -->
+            <!--         Days -->
+            <!--       </p> -->
+            <!--     </div> -->
+            <!--   </div> -->
+            <!-- </div> -->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+              <div class="card card-statistics">
+                <div class="card-body btn-warning-outline buy-medicine">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <h4 class="text-warning">
+                        <i class="fa fa-gavel highlight-icon" aria-hidden="true"></i>
+                      </h4>
+                    </div>
+                    <div class="float-right buy-label">
+                      <h4 class="card-text text-warning">
+                        Challenge System
+                      </h4>
+                      <!-- <button type="button" class="btn btn-outline-primary bold-text card-text">Buy Medicine</button> -->
+                    </div>
+                  </div>
+                  <p class="text-muted">
+                    <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Challenge Our Automated System
                   </p>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-7 mb-4">
+            <div class="col-md-6 mb-4">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">State Wise Result</h5>
@@ -117,7 +139,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-5 mb-4">
+            <div class="col-md-6 mb-4">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Party Wise Result</h5>
@@ -131,6 +153,7 @@
         </div>
       </div>
     </div>
+    {{>vote}}
     <script src="../js/index.js"></script>
     <script src="../js/totalVotesMap.js"></script>
     <script src="../js/totalVotesBarChart.js"></script>

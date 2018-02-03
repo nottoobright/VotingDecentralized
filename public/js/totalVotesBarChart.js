@@ -13,7 +13,10 @@ Highcharts.chart('totalVotesBarChart', {
     type: 'column'
   },
   title: {
-    text: 'Party Wise Result'
+    text: null
+  },
+  exporting: {
+    enabled: false
   },
   xAxis: {
     type: 'category'
