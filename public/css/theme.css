@@ -14512,3 +14512,7 @@ transform: translateX(-100%) rotate(-120deg); } }
               color: #1c2c3f; }
 
               /*# sourceMappingURL=maps/style.css.map */
+/* custom css begins here */
+.card-title {
+  margin-bottom: 2rem;
+}

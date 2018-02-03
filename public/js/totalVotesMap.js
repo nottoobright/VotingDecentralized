@@ -86,11 +86,15 @@ Highcharts.each(data, function (row) {
 // Build the chart
 var chart = Highcharts.mapChart('container', {
   title: {
-    text: 'State Wise Result'
+    text: null
   },
 
   chart: {
     animation: false // Disable animation, especially for zooming
+  },
+
+  exporting: {
+    enabled: false
   },
 
   colorAxis: {
@@ -117,9 +121,6 @@ var chart = Highcharts.mapChart('container', {
     }]
   },
 
-  mapNavigation: {
-    enabled: true
-  },
   // Limit zoom range
   yAxis: {
     minRange: 2300
