@@ -55,7 +55,7 @@
                     </div>
                     <div class="float-right">
                       <p class="card-text text-dark">Votes Casted</p>
-                      <h4 class="bold-text total-sales-val pull-right votes-casted-val">29745</h4>
+                      <h4 class="bold-text total-sales-val pull-right votes-casted-val" id="total_votes"></h4>
                     </div>
                   </div>
                   <p class="text-muted">
@@ -75,7 +75,7 @@
                     </div>
                     <div class="float-right">
                       <p class="card-text text-dark">Winning</p>
-                      <h4 class="bold-text">Congress</h4>
+                      <h4 class="bold-text" id="winning"></h4>
                     </div>
                   </div>
                   <p class="text-muted">
@@ -155,6 +155,23 @@
     </div>
     {{>vote}}
     <script src="../js/index.js"></script>
+    <script>
+    var ethid ={{ethid}};
+    var total_votes=Voting.getTotalVotes().toString();
+document.getElementById("total_votes").innerHTML=total_votes
+    var bjp=parseInt(Voting.result()[0].toString());
+    var cong=parseInt(Voting.result()[1].toString());
+    var aap=parseInt(Voting.result()[2].toString());
+    var winner;
+    if(bjp>=aap && bjp >=cong){
+        winner = "BJP";
+    }else if(cong>=bjp && cong >= aap){
+        winner = "Congress"
+    }else{
+        winner = "AAP"
+    }
+document.getElementById("winning").innerHTML = winner;
+    </script>
     <script src="../js/totalVotesMap.js"></script>
     <script src="../js/totalVotesBarChart.js"></script>
   </body>
