@@ -128,6 +128,16 @@
                 </div>
               </div>
             </div>
+            <div class="col-12 mb-4">
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Last Voted Hash</h5>
+                                <div class="custom-legend-container w-75 mx-auto">
+                                  <div id="lastVotedHash">0xfa3423423</div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
           </div>
         </div>
       </div>
@@ -136,6 +146,14 @@
     {{>challenge}}
     <script src="../js/index.js"></script>
     <script>
+
+
+var VotingEvent = Voting.LastVotedInfo({}, 'latest');
+VotingEvent.watch(function(error, result) {
+    if (result) {console.log(result.blockHash);
+         document.getElementById("lastVotedHash").innerHTML =result.blockHash
+    }
+});
     var ethid ={{ethid}};
     var total_votes=Voting.getTotalVotes().toString();
 document.getElementById("total_votes").innerHTML=total_votes

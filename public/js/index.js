@@ -181,9 +181,3 @@ let Voting = VotingContract.at('0x8646674be281d0762c4debaaf393c61b88338bb9');
 
 console.log(Voting)
 
-
-let VotingEvent = Voting.LastVotedInfo({}, 'latest');
-VotingEvent.watch(function(error, result) {
-    if (result) {console.log(result.blockHash);
-    }
-});
