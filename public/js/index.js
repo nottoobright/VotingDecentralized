@@ -162,9 +162,28 @@ let VotingContract = web3.eth.contract([
         "payable": false,
         "stateMutability": "view",
         "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "account",
+                "type": "address"
+            }
+        ],
+        "name": "LastVotedInfo",
+        "type": "event"
     }
 ]);
 
-let Voting = VotingContract.at('0x3ef1ee7ca91ff5e96b8ffa9876bb4731d112db16');
+let Voting = VotingContract.at('0x8646674be281d0762c4debaaf393c61b88338bb9');
 
 console.log(Voting)
+
+
+let VotingEvent = Voting.LastVotedInfo({}, 'latest');
+VotingEvent.watch(function(error, result) {
+    if (result) {console.log(result.blockHash);
+    }
+});

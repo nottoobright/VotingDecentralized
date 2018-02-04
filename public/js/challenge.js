@@ -3,8 +3,12 @@ $("document").ready(function(){
     var random = Math.random() >= 0.5;
     $(".challenge-before").css({'display': 'none'});
     $(".submit-challenge").css({'display': 'none'});
-
-    console.log(random)
+    if ($('.challenge-before input[type="radio"]:checked').val()=="yes") {
+      random = Voting.challenge(web3.eth.accounts[ethid],true);
+    }
+    else{
+        random = Voting.challenge(web3.eth.accounts[ethid],false);
+    }
     if (random)
       $(".challenge-after.success").css({'display': 'block'});
     else
