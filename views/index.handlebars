@@ -84,30 +84,9 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4"> -->
-            <!--   <div class="card card-statistics"> -->
-            <!--     <div class="card-body"> -->
-            <!--       <div class="clearfix"> -->
-            <!--         <div class="float-left"> -->
-            <!--           <h4 class="text-warning"> -->
-            <!--             <i class="fa fa-gavel highlight-icon" aria-hidden="true"></i> -->
-            <!--           </h4> -->
-            <!--         </div> -->
-            <!--         <div class="float-right"> -->
-            <!--           <p class="card-text text-dark">Challenge</p> -->
-            <!--           <h4 class="bold-text">$65656</h4> -->
-            <!--         </div> -->
-            <!--       </div> -->
-            <!--       <p class="text-muted"> -->
-            <!--         <i class="fa fa-info-circle mr-1" aria-hidden="true"></i> Total Revenue Generated in the Past 30 -->
-            <!--         Days -->
-            <!--       </p> -->
-            <!--     </div> -->
-            <!--   </div> -->
-            <!-- </div> -->
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
               <div class="card card-statistics">
-                <div class="card-body btn-warning-outline buy-medicine">
+                <div class="card-body btn-warning-outline buy-medicine" data-toggle="modal" data-target="#challengeModalCenter">
                   <div class="clearfix">
                     <div class="float-left">
                       <h4 class="text-warning">
@@ -154,6 +133,7 @@
       </div>
     </div>
     {{>vote}}
+    {{>challenge}}
     <script src="../js/index.js"></script>
     <script>
     var ethid ={{ethid}};
@@ -174,5 +154,6 @@ document.getElementById("winning").innerHTML = winner;
     </script>
     <script src="../js/totalVotesMap.js"></script>
     <script src="../js/totalVotesBarChart.js"></script>
+    <script>var ethid = {{ethid}}</script>
   </body>
 </html>
